@@ -2,16 +2,17 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import Button from "./Button";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="border-b border-zinc-200 bg-white dark:border-zinc-800 dark:bg-black">
+    <nav className="bg-white shadow-sm border-b border-gray-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
-            <Link href="/" className="text-xl font-bold text-zinc-900 dark:text-white">
+            <Link href="/" className="text-xl font-bold text-gray-900">
               Habit Tracker
             </Link>
           </div>
@@ -20,22 +21,27 @@ export default function Navbar() {
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
               <Link
-                href="/"
-                className="rounded-md px-3 py-2 text-sm font-medium text-zinc-900 hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-800"
+                href="/dashboard"
+                className="rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               >
-                Home
+                Dashboard
               </Link>
               <Link
                 href="/habits"
-                className="rounded-md px-3 py-2 text-sm font-medium text-zinc-900 hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-800"
+                className="rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               >
                 Habits
               </Link>
               <Link
-                href="/stats"
-                className="rounded-md px-3 py-2 text-sm font-medium text-zinc-900 hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-800"
+                href="/tasks"
+                className="rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               >
-                Statistics
+                Tasks
+              </Link>
+              <Link href="/login">
+                <Button size="sm" variant="primary">
+                  Login
+                </Button>
               </Link>
             </div>
           </div>
@@ -44,7 +50,7 @@ export default function Navbar() {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center rounded-md p-2 text-zinc-900 hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-800"
+              className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900"
             >
               <span className="sr-only">Open main menu</span>
               {!isOpen ? (
@@ -66,22 +72,27 @@ export default function Navbar() {
         <div className="md:hidden">
           <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
             <Link
-              href="/"
-              className="block rounded-md px-3 py-2 text-base font-medium text-zinc-900 hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-800"
+              href="/dashboard"
+              className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 text-center"
             >
-              Home
+              Dashboard
             </Link>
             <Link
               href="/habits"
-              className="block rounded-md px-3 py-2 text-base font-medium text-zinc-900 hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-800"
+              className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 text-center"
             >
               Habits
             </Link>
             <Link
-              href="/stats"
-              className="block rounded-md px-3 py-2 text-base font-medium text-zinc-900 hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-800"
+              href="/tasks"
+              className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 text-center"
             >
-              Statistics
+              Tasks
+            </Link>
+            <Link href="/login" className="block px-3 py-2 text-center">
+              <Button size="sm" variant="primary">
+                Login
+              </Button>
             </Link>
           </div>
         </div>
