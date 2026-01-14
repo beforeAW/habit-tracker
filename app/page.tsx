@@ -1,32 +1,36 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/lib/auth';
+import Link from 'next/link';
+import Button from '@/components/Button';
 
 export default function Home() {
+  const { isAuthenticated } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push('/dashboard');
+    }
+  }, [isAuthenticated, router]);
+
   return (
-    <div className="min-h-screen bg-zinc-50">
-      <main className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-900 sm:text-6xl">
-            Track Your Habits
-          </h1>
-          <p className="mt-6 text-lg leading-8 text-zinc-600">
-            Build better habits, one day at a time.
-          </p>
-          <div className="mt-10 flex items-center justify-center gap-x-6">
-            <a
-              href="/habits"
-              className="rounded-md bg-zinc-900 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-zinc-800 transition-colors"
-            >
-              Get Started
-            </a>
-            <a
-              href="/stats"
-              className="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700 transition-colors"
-            >
-              View Statistics <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </div>
-      </main>
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md text-center">
+        <h1 className="text-2xl font-bold mb-4 text-gray-900">
+          Track Your Habits
+        </h1>
+        <p className="text-gray-600 mb-6">
+          Build better habits, one day at a time. Please log in to continue.
+        </p>
+        <Link href="/login">
+          <Button variant="primary" size="md" className="w-full">
+            Get Started
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 }
