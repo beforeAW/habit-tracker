@@ -21,6 +21,7 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   tasks         Task[]
+  habits        Habit[]
 }
 
 model Task {
@@ -33,4 +34,19 @@ model Task {
   completed     Boolean   @default(false)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+}
+
+enum Frequency {
+  DAILY
+  WEEKLY
+}
+
+model Habit {
+  id            String      @id @default(cuid())
+  userId        String
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title         String
+  frequency     Frequency
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
 }
